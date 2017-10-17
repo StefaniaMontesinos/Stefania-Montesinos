@@ -2,16 +2,17 @@
 ## functions do
 
 ## Write a short comment describing this function
+## This function is used to solve the inverse of a square matrix which is solvable. 
 
-makeCacheMatrix<-function(x=matrix()){
+makeCacheMatrix<-function(x=matrix()){ 
   inv=NULL
-  set<-function(y){
+  set<-function(y){ ## with this function you can set the value of your matrix 
     x<<-y
     inv<<-NULL
   }
-  get<function() x
-  setinv<-function(inverse) inv<<-inverse
-  getinv<-function() inv
+  get<function() x # in this part you get the value of the matrix so it can be used later 
+  setinv<-function(inverse) inv<<-inverse # here you should set the value of the inverse 
+  getinv<-function() inv # you get the value of the inverse you set before.
   list(set = set, get = get,
        setinv = setinv,
        getinv = getinv)
@@ -22,12 +23,12 @@ makeCacheMatrix<-function(x=matrix()){
 cacheSolve<- function(x, ...) {
   inv <- x$getinv()
   if(!is.null(inv)) {
-    message("getting cached data")
-    return(inv)
+    message("getting cached data") # if the inverse was already calculated so it returns the value.
+    return(inv) # 
   }
   Math <- x$get()
   inv <- solve(Math, ...)
-  x$setinv(inv)
+  x$setinv(inv) # with this function it calculates the inverse if it was not already. 
   inv
 }
 
